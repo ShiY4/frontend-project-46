@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander/esm.mjs';
-import parser from '../src/index.js';
+import parser from '../src/parser.js';
 
 const program = new Command();
 
