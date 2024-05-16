@@ -9,7 +9,6 @@ rules:
   quotes: 1
   no-mixed-spaces-and-tabs: 0
   no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
-  linebreak-style: ["error", "windows"]
   no-tabs: 0
   no-console: 0
   no-restricted-syntax: 0
