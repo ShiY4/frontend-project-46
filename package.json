@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "debug": "NODE_OPTIONS=--experimental-vm-modules npx jest"
+    "debug": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "files.eol": "\n"
   },
   "author": "Ilya Shitkin",
   "license": "ISC",
