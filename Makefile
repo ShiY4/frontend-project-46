@@ -6,3 +6,6 @@ gendiff:
 
 make lint:
 	npx eslint .
+
+make test-coverage:
+	npx jest --coverage
