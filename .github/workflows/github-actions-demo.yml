@@ -1,15 +1,22 @@
-name: GitHub Actions Demo
-
-run-name: ${{ github.actor }} testing ${{ inputs.deploy_target }}🚀
+name: linter
 
 on: [push]
 
 jobs:
-  linting:
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: install dependances
-        run: make install
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+    - uses: actions/checkout@v3
+    - name: install dependances
+      run: make install
+    - name: use eslint
+      run: make lint
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v3.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      with:
+        coverageCommand: make test-coverage
+        debug: true
