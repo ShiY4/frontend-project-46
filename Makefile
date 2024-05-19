@@ -8,4 +8,4 @@ make lint:
 	npx eslint .
 
 make test-coverage:
-	npx jest --coverage
+	npm run coverage
