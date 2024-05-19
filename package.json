@@ -15,6 +15,7 @@
   "author": "Ilya Shitkin",
   "license": "ISC",
   "dependencies": {
+    "@jest/globals": "^29.7.0",
     "commander": "^12.0.0",
     "fs": "^0.0.1-security",
     "js-yaml": "^4.1.0",

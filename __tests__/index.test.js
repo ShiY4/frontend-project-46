@@ -1,3 +1,4 @@
+import { expect, test } from '@jest/globals';
 import * as fs from 'node:fs';
 import path from 'node:path';
 import parser from '../src/parser.js';
