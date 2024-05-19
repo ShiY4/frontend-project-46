@@ -8,7 +8,7 @@
     "gendiff": "bin/gendiff.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "debug": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "files.eol": "\n"
   },
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.2.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",

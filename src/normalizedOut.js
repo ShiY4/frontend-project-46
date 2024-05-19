@@ -4,7 +4,8 @@ const normalizedOutput = (resultArr) => {
     output += `\n  ${key}: ${value}`;
   }
   output += '\n}';
-  return console.log(output);
+  console.log(output);
+  return output;
 };
 
 export default normalizedOutput;
