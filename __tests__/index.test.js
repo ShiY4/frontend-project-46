@@ -1,19 +1,23 @@
-import { expect, test } from '@jest/globals';
+import { expect, test, describe } from '@jest/globals';
 import * as fs from 'node:fs';
 import path from 'node:path';
-import parser from '../src/parser.js';
+import inspectDiff from '../src/index.js';
 
 const dirname = process.cwd();
 console.log(dirname);
 
 const getFixturePath = (filename) => path.join(dirname, '__tests__', '__fixtures__', filename);
-const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-const expected = readFile(`testing.txt`);
-console.log(expected, 'expected');
+describe.each(['json-test'])('%s formatter', (formatter) => {
+  const filepathOfExpected = getFixturePath(`${formatter}.txt`);
+  const expected = fs.readFileSync(filepathOfExpected, 'utf-8');
 
-const result = parser('./__tests__/__fixtures__/file1.json', './__tests__/__fixtures__/file2.json');
+  test.each([['json'], ['yml']])('%s files', (extension) => {
+    const filepath1 = getFixturePath(`file1.${extension}`);
+    const filepath2 = getFixturePath(`file2.${extension}`);
 
-test('first-test', () => {
-  expect(result).toBe(expected);
+    const result = inspectDiff(filepath1, filepath2, formatter);
+
+    expect(result).toBe(expected);
+  });
 });

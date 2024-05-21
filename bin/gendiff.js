@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander/esm.mjs';
-import parser from '../src/parser.js';
+import inspectDiff from '../src/index.js';
 
 const program = new Command();
 
@@ -11,7 +11,7 @@ program
   .argument('<filepath1>')
   .argument('<filepath2>')
   .action((filepath1, filepath2) => {
-    parser(filepath1, filepath2);
+    inspectDiff(filepath1, filepath2);
   });
 
 program.parse();
