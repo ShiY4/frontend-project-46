@@ -1,32 +1,41 @@
-const formatter = (obj) => {
-  let out = '{';
-  for (const key of obj) {
-    // console.log(key.type);
-    // console.log(key);
-    if (key.type === 'parent') {
-      formatter(key.children);
-      out += `\n  ${key.key}: ${key.children}`;
-      // console.log(children);
-    }
+const getIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat(spacesCount * depth - 2);
 
-    if (key.type === 'added') {
-      out += `\n  + ${key.key}: ${key.value}`;
-    }
-
-    if (key.type === 'deleted') {
-      out += `\n  - ${key.key}: ${key.value}`;
-    }
-
-    if (key.type === 'diffValue') {
-      out += `\n  - ${key.key}: ${key.oldValue}`;
-      out += `\n  + ${key.key}: ${key.newValue}`;
-    }
-
-    if (key.type === 'stay same') {
-      out += `\n    ${key.key}: ${key.value}`;
-    }
+const makeString = (value, depth) => {
+  if (!(typeof value === 'object' && value !== null && !Array.isArray(value))) {
+    return value;
   }
-  console.log(out);
+  const keys = Object.keys(value);
+  const result = keys.map((key) => {
+    const newKey = value[key];
+    return `${getIndent(depth + 1)}  ${key}: ${makeString(newKey, depth + 1)}`;
+  });
+  return `{\n${result.join('\n')}\n  ${getIndent(depth)}}`;
+};
+
+const formatter = (array) => {
+  const iteration = (node, depth = 1) => {
+    const result = node.map((element) => {
+      if (element.type === 'parent') {
+        return `${getIndent(depth)}  ${element.key}: {\n${iteration(element.children, depth + 1)}\n${getIndent(depth)}  }`;
+      }
+      if (element.type === 'stay same') {
+        return `${getIndent(depth)}  ${element.key}: ${makeString(element.value, depth)}`;
+      }
+      if (element.type === 'deleted') {
+        return `${getIndent(depth)}- ${element.key}: ${makeString(element.value, depth)}`;
+      }
+      if (element.type === 'added') {
+        return `${getIndent(depth)}+ ${element.key}: ${makeString(element.value, depth)}`;
+      }
+      if (element.oldValue === '') {
+        return `${getIndent(depth)}- ${element.key}:\n${getIndent(depth)}+ ${element.key}: ${makeString(element.newValue, depth)}`;
+      }
+      return `${getIndent(depth)}- ${element.key}: ${makeString(element.oldValue, depth)}\n${getIndent(depth)}+ ${element.key}: ${makeString(element.newValue, depth)}`;
+    });
+
+    return result.join('\n');
+  };
+  return `{\n${iteration(array)}\n}`;
 };
 
 export default formatter;
