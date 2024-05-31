@@ -12,7 +12,7 @@ const makeString = (value, depth) => {
   return `{\n${result.join('\n')}\n  ${getIndent(depth)}}`;
 };
 
-const formatter = (array) => {
+const stylish = (array) => {
   const iteration = (node, depth = 1) => {
     const result = node.map((element) => {
       if (element.type === 'parent') {
@@ -38,4 +38,4 @@ const formatter = (array) => {
   return `{\n${iteration(array)}\n}`;
 };
 
-export default formatter;
+export default stylish;
