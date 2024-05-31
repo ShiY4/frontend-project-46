@@ -8,7 +8,7 @@ console.log(dirname);
 
 const getFixturePath = (filename) => path.join(dirname, '__fixtures__', filename);
 
-describe.each([['stylish'], ['plain']])('%s formatter', (formatter) => {
+describe.each([['stylish'], ['plain'], ['json']])('%s formatter', (formatter) => {
   const filepathOfExpected = getFixturePath(`${formatter}.txt`);
   const expected = fs.readFileSync(filepathOfExpected, 'utf-8');
   console.log(expected);
