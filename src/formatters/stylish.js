@@ -28,7 +28,7 @@ const stylish = (array) => {
         return `${getIndent(depth)}+ ${element.key}: ${makeString(element.value, depth)}`;
       }
       if (element.oldValue === '') {
-        return `${getIndent(depth)}- ${element.key}:\n${getIndent(depth)}+ ${element.key}: ${makeString(element.newValue, depth)}`;
+        return `${getIndent(depth)}- ${element.key}:1\n${getIndent(depth)}+ ${element.key}: ${makeString(element.newValue, depth)}`;
       }
       // if (element.newValue === '') {
       //   return `${getIndent(depth)}- ${element.key}: ${makeString(element.oldValue, depth)}\n${getIndent(depth)}+ ${element.key}:`;
