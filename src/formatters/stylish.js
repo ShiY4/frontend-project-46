@@ -30,9 +30,9 @@ const stylish = (array) => {
       if (element.oldValue === '') {
         return `${getIndent(depth)}- ${element.key}:\n${getIndent(depth)}+ ${element.key}: ${makeString(element.newValue, depth)}`;
       }
-      if (element.newValue === '') {
-        return `${getIndent(depth)}- ${element.key}: ${makeString(element.oldValue, depth)}\n${getIndent(depth)}+ ${element.key}:`;
-      }
+      // if (element.newValue === '') {
+      //   return `${getIndent(depth)}- ${element.key}: ${makeString(element.oldValue, depth)}\n${getIndent(depth)}+ ${element.key}:`;
+      // }
       return `${getIndent(depth)}- ${element.key}: ${makeString(element.oldValue, depth)}\n${getIndent(depth)}+ ${element.key}: ${makeString(element.newValue, depth)}`;
     });
 
