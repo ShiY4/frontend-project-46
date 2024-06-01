@@ -8,7 +8,7 @@
     "gendiff": "bin/gendiff.js"
   },
   "scripts": {
-    "coverage": "npx jest --coverage",
+    "coverage": "NODE_OPTIONS=--experimental-vm-modules npx jest --coverage",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
   },
   "author": "Ilya Shitkin",
