@@ -9,7 +9,8 @@
   },
   "scripts": {
     "coverage": "NODE_OPTIONS=--experimental-vm-modules npx jest --coverage",
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "files.eol": "\n"
   },
   "author": "Ilya Shitkin",
   "license": "ISC",
