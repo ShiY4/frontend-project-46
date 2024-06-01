@@ -27,7 +27,7 @@ const stylish = (array) => {
       if (element.type === 'added') {
         return `${getIndent(depth)}+ ${element.key}: ${makeString(element.value, depth)}`;
       }
-      if (element.oldValue === '' || element.newValue === '') {
+      if (element.oldValue === '') {
         return `${getIndent(depth)}- ${element.key}:\n${getIndent(depth)}+ ${element.key}: ${makeString(element.newValue, depth)}`;
       }
       if (element.newValue === '') {
