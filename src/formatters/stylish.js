@@ -15,19 +15,18 @@ const makeString = (value, depth) => {
 const stylish = (array) => {
   const iteration = (node, depth = 1) => {
     const result = node.map((element) => {
-      if (element.type === 'parent') {
-        return `${getIndent(depth)}  ${element.key}: {\n${iteration(element.children, depth + 1)}\n${getIndent(depth)}  }`;
+      switch (element.type) {
+        case 'parent':
+          return `${getIndent(depth)}  ${element.key}: {\n${iteration(element.children, depth + 1)}\n${getIndent(depth)}  }`;
+        case 'stay same':
+          return `${getIndent(depth)}  ${element.key}: ${makeString(element.value, depth)}`;
+        case 'deleted':
+          return `${getIndent(depth)}- ${element.key}: ${makeString(element.value, depth)}`;
+        case 'added':
+          return `${getIndent(depth)}+ ${element.key}: ${makeString(element.value, depth)}`;
+        default:
+          return `${getIndent(depth)}- ${element.key}: ${makeString(element.oldValue, depth)}\n${getIndent(depth)}+ ${element.key}: ${makeString(element.newValue, depth)}`;
       }
-      if (element.type === 'stay same') {
-        return `${getIndent(depth)}  ${element.key}: ${makeString(element.value, depth)}`;
-      }
-      if (element.type === 'deleted') {
-        return `${getIndent(depth)}- ${element.key}: ${makeString(element.value, depth)}`;
-      }
-      if (element.type === 'added') {
-        return `${getIndent(depth)}+ ${element.key}: ${makeString(element.value, depth)}`;
-      }
-      return `${getIndent(depth)}- ${element.key}: ${makeString(element.oldValue, depth)}\n${getIndent(depth)}+ ${element.key}: ${makeString(element.newValue, depth)}`;
     });
 
     return result.join('\n');

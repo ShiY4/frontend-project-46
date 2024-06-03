@@ -1,5 +1,3 @@
-// import * as fs from 'node:fs';
-// import path from 'path';
 import yaml from 'js-yaml';
 
 const parser = (data, type) => {
@@ -10,7 +8,7 @@ const parser = (data, type) => {
     case '.json':
       return JSON.parse(data);
     default:
-      return console.log(`Format ${type} is not supported!`);
+      throw new Error(`Format ${type} is not supported!`);
   }
 };
 

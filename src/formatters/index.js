@@ -3,6 +3,8 @@ import stylish from './stylish.js';
 
 const format = (data, fileFormat) => {
   switch (fileFormat) {
+    case '':
+      return stylish(data);
     case 'stylish':
       return stylish(data);
     case 'plain':
@@ -10,7 +12,7 @@ const format = (data, fileFormat) => {
     case 'json':
       return JSON.stringify(data, null, 2);
     default:
-      return `'${fileFormat}' is unknown format!`;
+      throw new Error(`'${fileFormat}' is unknown format!`);
   }
 };
 

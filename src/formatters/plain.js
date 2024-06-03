@@ -15,22 +15,18 @@ const plain = (array, acc = '') => {
   const result = keys.map((key) => {
     const obj = array[key];
 
-    if (obj.type === 'parent') {
-      return plain(obj.children, `${acc}${obj.key}.`);
+    switch (obj.type) {
+      case 'parent':
+        return plain(obj.children, `${acc}${obj.key}.`);
+      case 'added':
+        return `Property '${acc}${obj.key}' was added with value: ${getChild(obj.value)}`;
+      case 'deleted':
+        return `Property '${acc}${obj.key}' was removed`;
+      case 'diffValue':
+        return `Property '${acc}${obj.key}' was updated. From ${getChild(obj.oldValue)} to ${getChild(obj.newValue)}`;
+      default:
+        return null;
     }
-
-    if (obj.type === 'added') {
-      return `Property '${acc}${obj.key}' was added with value: ${getChild(obj.value)}`;
-    }
-
-    if (obj.type === 'deleted') {
-      return `Property '${acc}${obj.key}' was removed`;
-    }
-
-    if (obj.type === 'diffValue') {
-      return `Property '${acc}${obj.key}' was updated. From ${getChild(obj.oldValue)} to ${getChild(obj.newValue)}`;
-    }
-    return null;
   });
   return result.filter((line) => line !== null).join('\n');
 };

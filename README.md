@@ -8,3 +8,16 @@
 [![asciicast](https://asciinema.org/a/GoBcp2nzWocJCmpHuCXqxmZBj.svg)](https://asciinema.org/a/GoBcp2nzWocJCmpHuCXqxmZBj)
 [![asciicast](https://asciinema.org/a/TcMcJ6Qy7A0R3iuieYmtwrkSd.svg)](https://asciinema.org/a/TcMcJ6Qy7A0R3iuieYmtwrkSd)
 [![asciicast](https://asciinema.org/a/dWfoUBf39QzudbXZeXv2rczrU.svg)](https://asciinema.org/a/dWfoUBf39QzudbXZeXv2rczrU)
+
+Данный проект является тренировочным и представляет из себя утилиту для сравнения версий файлов.
+
+Установка пакета:
+1 - Перейти в корень проекта
+2 - Ввести в терминале команду "make install"
+3 - Ввести в терминале команду "npm link" или "sudo npm link", если ОС Linux
+
+Использование утилиты:
+    Для отображения доступных команд необходимо ввести в терминале команду gendiff -h
+        
+    Чтобы явно указать форматирование вывода информации о различии файлов - 
+    нужно прописать в терминале gendiff --format (путь до файла 1) (путь до файла 2), по дефолту установлен формат 'stylish'.
